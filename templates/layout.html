@@ -12,15 +12,15 @@
       content="width=device-width, initial-scale=1, maximum-scale=2"
     />
     <title th:text="${site.title}"></title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
     <script th:src="@{/assets/js/main.js}"></script>
     <th:block th:if="${head != null}">
       <th:block th:replace="${head}" />
     </th:block>
   </head>
   <body th:style="'background-color: '+${theme.config.style.background_color ?: '#f2f2f2'}">
-    <section>
+    <!-- <section> -->
       <th:block th:replace="${content}" />
-    </section>
+    <!-- </section> -->
   </body>
 </html>
