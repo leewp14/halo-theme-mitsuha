@@ -1,4 +1,4 @@
-# Theme Starter
+# mitsuha. <sup><sup><sub><sub>(halo-theme-mitsuha)
 
 Halo 2.0 的基础主题开发模板，包含了主题的基本目录结构。
 
