@@ -8,10 +8,21 @@
   </th:block>
 
   <th:block th:fragment="content">
-    <header>
+    <header id="header" h-active="false" onmouseover="document.querySelector('#header').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#header').attributes['h-active'].value = false;">
       <div>
-        <h1 th:text="${site.title}"></h1>
+          <div>
+            <h1 th:text="${site.title}"></h1>
+          </div>
       </div>
+      <nav th:with="navMenu = ${menuFinder.getPrimary()}">
+        <th:block th:each="navMenuItem : ${navMenu.menuItems}">
+          <a
+            th:href="@{${navMenuItem.status.href}}"
+            th:text="${navMenuItem.status.displayName}"
+            th:target="${navMenuItem.spec.target?.value}"
+          ></a>
+        </th:block>
+      </nav>  
     </header>
     <section id="index-cover">
       <div id="index-cover-desc">
@@ -23,18 +34,11 @@
         </div>
       </div>
     </section>
-    <section id="index-cover">
-        <div>
-          <div>
-            <div>
-              <p>
-                What you could've think; it won't happen. <br>
-                你所想到的，都不可能会发生。
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <footer>
+      <div>
+        <span th:text="${site.title}"></span>. Theme <span th:text="${theme.spec.displayName}"></span>
+      </div>
+    </footer>
 
     <!-- <main>
       <ul>
