@@ -3,26 +3,12 @@
   xmlns:th="https://www.thymeleaf.org"
   th:replace="~{include/layout :: html(head = ~{::head},content = ~{::content})}"
 >
-  <th:block th:fragment="head">
-    <link rel="stylesheet" th:href="@{/assets/css/index.css}" />
-  </th:block>
+    <th:block th:fragment="head">
+        <link rel="stylesheet" th:href="@{/assets/css/index.css}" />
+    </th:block>
 
-  <th:block th:fragment="content">
-    <!-- cover -->
-    <th:block th:replace="~{include/fragments :: cover}" />
-
-    <!-- <main>
-      <ul>
-        <li th:each="post : ${posts.items}">
-          <a
-            th:href="@{${post.status.permalink}}"
-            th:text="${post.spec.title}"
-          ></a>
-        </li>
-      </ul>
-    </main> -->
-
-    <!-- <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
-    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a> -->
-  </th:block>
+    <th:block th:fragment="content">
+        <!-- cover -->
+        <th:block th:replace="~{include/fragments :: cover}" />
+    </th:block>
 </html>
