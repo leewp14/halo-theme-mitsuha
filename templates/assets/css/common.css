@@ -48,6 +48,16 @@ header > div, header > nav {
     max-width: 1024px;
 }
 
+header > div > #header-title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+header > div > #header-title > #header-title-subtitle {
+    opacity: .7;
+}
+
 header[h-active=true] > div {
     backdrop-filter: blur(20px);
 }
@@ -65,7 +75,7 @@ header > nav {
     z-index: -1;
 
     opacity: 0;
-    transform: translate(0, -1rem);
+    transform: translate(0, -1rem) scale(.99);
 }
 
 header[h-active=true] > nav{

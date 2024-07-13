@@ -10,8 +10,9 @@
   <th:block th:fragment="content">
     <header id="header" h-active="false" onmouseover="document.querySelector('#header').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#header').attributes['h-active'].value = false;">
       <div>
-          <div>
+          <div id="header-title">
             <h1 th:text="${site.title}"></h1>
+            <div id="header-title-subtitle" th:text="${site.subtitle}"></div>
           </div>
       </div>
       <nav th:with="navMenu = ${menuFinder.getPrimary()}">
