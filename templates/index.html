@@ -10,5 +10,19 @@
     <th:block th:fragment="content">
         <!-- cover -->
         <th:block th:replace="~{fragments/components :: cover}" />
+
+        <!-- latest post -->
+        <section id="index-latestPost">
+            <div id="index-latestPost-header">
+                <div id="index-latestPost-header-icon">
+                    <span>+</span>
+                </div>
+                <div>最新文章</div>
+            </div>
+            <div id="index-latestPost-container">
+                <strong id="index-latestPost-title">床边故事：十月廿一</strong>
+                <div id="index-latestPost-subtitle">编辑于 2024年4月14日</div>
+            </div>
+        </section>
     </th:block>
 </html>

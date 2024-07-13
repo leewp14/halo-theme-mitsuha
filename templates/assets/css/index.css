@@ -1,0 +1,70 @@
+
+section#index-latestPost {
+    width: 100%;
+    height: 15rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url('https://picsum.photos/id/880/1920/1080');
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+div#index-latestPost-header {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    color: black;
+    pointer-events: none;
+}
+
+div#index-latestPost-header > #index-latestPost-header-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    flex-shrink: 0;
+}
+
+div#index-latestPost-container {
+    width: calc(100% - 2rem);
+    height: calc(100% - 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+strong#index-latestPost-title {
+    margin: .5rem;
+    font-size: 1.4rem;
+    text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2rem;
+}
+
+div#index-latestPost-subtitle {
+    background: #000000dd;
+    color: white;
+    padding: .1rem 1rem;
+    opacity: .5;
+}
+
+/* TODO: fix background on mobile view */
+@media (pointer: fine) {
+    section#index-latestPost {
+        background-size: 100%;
+    }
+
+    section#index-latestPost:hover {
+        background-size: 105%;
+        color: black;
+    }    
+}
