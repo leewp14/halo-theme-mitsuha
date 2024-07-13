@@ -28,8 +28,8 @@
     <!-- end header -->
 
     <!-- cover -->
-    <section id="index-cover" th:fragment="cover">
-        <div id="index-cover-desc">
+    <section id="cover" th:fragment="cover">
+        <div id="cover-desc">
             <div>
             <p>
                 <span style="font-size:2rem">你所想到的，都不可能会发生。</span><br>
@@ -42,10 +42,10 @@
 
     <!-- footer -->
     <footer th:fragment="footer">
+        <halo:footer />
         <div>
             <span th:text="${site.title} + '. Theme ' + ${theme.spec.displayName}" />
         </div>
-        <halo:footer />
     </footer>
     <!-- end footer -->
 

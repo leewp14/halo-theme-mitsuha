@@ -13,6 +13,7 @@
         />
         <title th:text="${site.title}"></title>
         <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
+        <link rel="stylesheet" th:href="@{/assets/css/components.css}" />
         <script th:src="@{/assets/js/main.js}"></script>
         <th:block th:if="${head != null}">
             <th:block th:replace="${head}" />
@@ -21,12 +22,12 @@
 
     <body th:style="'background-color: '+${theme.config.style.background_color ?: '#f2f2f2'}">
         <!-- header -->
-        <th:block th:replace="~{include/fragments :: header}" />
+        <th:block th:replace="~{fragments/components :: header}" />
 
         <!-- content -->
         <th:block th:replace="${content}" />
 
         <!-- footer -->
-        <th:block th:replace="~{include/fragments :: footer}" />
+        <th:block th:replace="~{fragments/components :: footer}" />
     </body>
 </html>
