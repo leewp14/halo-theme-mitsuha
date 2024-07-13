@@ -1,45 +1,15 @@
 <!DOCTYPE html>
 <html
   xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = ~{::head},content = ~{::content})}"
+  th:replace="~{include/layout :: html(head = ~{::head},content = ~{::content})}"
 >
   <th:block th:fragment="head">
     <link rel="stylesheet" th:href="@{/assets/css/index.css}" />
   </th:block>
 
   <th:block th:fragment="content">
-    <header id="header" h-active="false" onmouseover="document.querySelector('#header').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#header').attributes['h-active'].value = false;">
-      <div>
-          <div id="header-title">
-            <h1 th:text="${site.title}"></h1>
-            <div id="header-title-subtitle" th:text="${site.subtitle}"></div>
-          </div>
-      </div>
-      <nav th:with="navMenu = ${menuFinder.getPrimary()}">
-        <th:block th:each="navMenuItem : ${navMenu.menuItems}">
-          <a
-            th:href="@{${navMenuItem.status.href}}"
-            th:text="${navMenuItem.status.displayName}"
-            th:target="${navMenuItem.spec.target?.value}"
-          ></a>
-        </th:block>
-      </nav>  
-    </header>
-    <section id="index-cover">
-      <div id="index-cover-desc">
-        <div>
-          <p>
-            <span style="font-size:2rem">你所想到的，都不可能会发生。</span><br>
-            <small>What you could've think; it won't happen.</small>
-          </p>
-        </div>
-      </div>
-    </section>
-    <footer>
-      <div>
-        <span th:text="${site.title}"></span>. Theme <span th:text="${theme.spec.displayName}"></span>
-      </div>
-    </footer>
+    <!-- cover -->
+    <th:block th:replace="~{include/fragments :: cover}" />
 
     <!-- <main>
       <ul>
@@ -52,7 +22,7 @@
       </ul>
     </main> -->
 
-    <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
-    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a>
+    <!-- <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
+    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a> -->
   </th:block>
 </html>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="https://www.thymeleaf.org"
+>
+
+    <!-- header -->
+    <header id="header" th:fragment="header"
+        h-active="false" onmouseover="document.querySelector('#header').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#header').attributes['h-active'].value = false;"
+    >
+        <div>
+            <div id="header-title">
+                <h1 th:text="${site.title}"></h1>
+                <div id="header-title-subtitle" th:text="${site.subtitle}"></div>
+            </div>
+        </div>
+        <nav th:with="navMenu = ${menuFinder.getPrimary()}">
+            <th:block th:each="navMenuItem : ${navMenu.menuItems}">
+            <a
+                th:href="@{${navMenuItem.status.href}}"
+                th:text="${navMenuItem.status.displayName}"
+                th:target="${navMenuItem.spec.target?.value}"
+            ></a>
+            </th:block>
+        </nav>  
+    </header>
+    <!-- end header -->
+
+    <!-- cover -->
+    <section id="index-cover" th:fragment="cover">
+        <div id="index-cover-desc">
+            <div>
+            <p>
+                <span style="font-size:2rem">你所想到的，都不可能会发生。</span><br>
+                <small>What you could've think; it won't happen.</small>
+            </p>
+            </div>
+        </div>
+    </section>
+    <!-- end cover -->
+
+    <!-- footer -->
+    <footer th:fragment="footer">
+        <div>
+            <span th:text="${site.title} + '. Theme ' + ${theme.spec.displayName}" />
+        </div>
+        <halo:footer />
+    </footer>
+    <!-- end footer -->
+
+</html>

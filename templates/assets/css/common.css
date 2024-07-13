@@ -17,6 +17,15 @@ body {
     color: #d0d0d0;
 }
 
+/* body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}   */
+
 a {
     text-decoration: none;
     color: inherit;
