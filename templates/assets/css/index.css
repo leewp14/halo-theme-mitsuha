@@ -10,7 +10,12 @@ section#index-latestPost {
     background: url('https://picsum.photos/id/880/1920/1080');
     background-position: center;
     background-size: cover;
-    cursor: pointer;
+}
+
+section#index-latestPost > a {
+    position: absolute;
+    width: inherit;
+    height: inherit;
 }
 
 div#index-latestPost-header {
@@ -35,6 +40,11 @@ div#index-latestPost-header > #index-latestPost-header-icon {
     flex-shrink: 0;
 }
 
+section#index-latestPost[h-active=true] #index-latestPost-header-icon {
+    transform: rotate(135deg);
+    filter: invert(.9);
+}
+
 div#index-latestPost-container {
     width: calc(100% - 2rem);
     height: calc(100% - 3rem);
@@ -42,6 +52,7 @@ div#index-latestPost-container {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    pointer-events: none;
 }
 
 strong#index-latestPost-title {
@@ -63,7 +74,7 @@ div#index-latestPost-subtitle {
         background-size: 100%;
     }
 
-    section#index-latestPost:hover {
+    section#index-latestPost[h-active=true] {
         background-size: 105%;
         color: black;
     }    

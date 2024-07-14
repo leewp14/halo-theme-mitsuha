@@ -12,7 +12,10 @@
         <th:block th:replace="~{fragments/components :: cover}" />
 
         <!-- latest post -->
-        <section id="index-latestPost">
+        <section id="index-latestPost" th:with="posts = ${posts.items}" h-active="false" >
+            <a th:unless="${#lists.isEmpty(posts)}" th:with="latestPost = ${posts[0]}" th:href="${latestPost.status.permalink}"
+                onmouseover="document.querySelector('#index-latestPost').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#index-latestPost').attributes['h-active'].value = false;"
+            ></a>
             <div id="index-latestPost-header">
                 <div id="index-latestPost-header-icon">
                     <span>+</span>
@@ -20,8 +23,16 @@
                 <div>最新文章</div>
             </div>
             <div id="index-latestPost-container">
-                <strong id="index-latestPost-title">床边故事：十月廿一</strong>
-                <div id="index-latestPost-subtitle">编辑于 2024年4月14日</div>
+                <th:block th:unless="${#lists.isEmpty(posts)}" th:with="latestPost = ${posts[0]}">
+                    <strong id="index-latestPost-title" th:text="${latestPost.spec.title}"></strong>
+                    <div id="index-latestPost-subtitle">
+                        发布于&nbsp;<span th:text="${#dates.format(latestPost.spec.publishTime, 'yyyy年M月dd日')}"></span>
+                    </div>
+                </th:block>
+                <th:block th:if="${#lists.isEmpty(posts)}">
+                    <strong id="index-latestPost-title">暂时没有文章</strong>
+                    <div id="index-latestPost-subtitle">ta很懒，什么都还没写 :P</div>
+                </th:block>
             </div>
         </section>
     </th:block>
