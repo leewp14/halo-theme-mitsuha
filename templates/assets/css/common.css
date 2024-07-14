@@ -1,5 +1,7 @@
 * {
     transition: all .3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: gray transparent;
 }
 
 html {
@@ -15,6 +17,8 @@ body {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
     color: #d0d0d0;
+    background-image: var(--h-var-fallback-background-image);
+    background-color: var(--h-var-fallback-background-color);
 }
 
 /* body {

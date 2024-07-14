@@ -12,28 +12,52 @@
         <th:block th:replace="~{fragments/components :: cover}" />
 
         <!-- latest post -->
-        <section id="index-latestPost" th:with="posts = ${posts.items}" h-active="false" >
-            <a th:unless="${#lists.isEmpty(posts)}" th:with="latestPost = ${posts[0]}" th:href="${latestPost.status.permalink}"
-                onmouseover="document.querySelector('#index-latestPost').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#index-latestPost').attributes['h-active'].value = false;"
-            ></a>
-            <div id="index-latestPost-header">
-                <div id="index-latestPost-header-icon">
-                    <span>+</span>
-                </div>
-                <div>最新文章</div>
-            </div>
-            <div id="index-latestPost-container">
-                <th:block th:unless="${#lists.isEmpty(posts)}" th:with="latestPost = ${posts[0]}">
-                    <strong id="index-latestPost-title" th:text="${latestPost.spec.title}"></strong>
-                    <div id="index-latestPost-subtitle">
-                        发布于&nbsp;<span th:text="${#dates.format(latestPost.spec.publishTime, 'yyyy年M月dd日')}"></span>
+        <section id="index-latestPost" th:with="allPosts = ${posts.items}" h-active="false" >
+            <article id="index-post-latest">
+                <a th:unless="${#lists.isEmpty(allPosts)}" th:with="latestPost = ${allPosts[0]}" th:href="${latestPost.status.permalink}"
+                    onmouseover="document.querySelector('#index-latestPost').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#index-latestPost').attributes['h-active'].value = false;"
+                ></a>
+                <div id="index-latestPost-header">
+                    <div id="index-latestPost-header-icon">
+                        <span>+</span>
                     </div>
-                </th:block>
-                <th:block th:if="${#lists.isEmpty(posts)}">
-                    <strong id="index-latestPost-title">暂时没有文章</strong>
-                    <div id="index-latestPost-subtitle">ta很懒，什么都还没写 :P</div>
+                    <div>最新文章</div>
+                </div>
+                <div id="index-latestPost-container">
+                    <th:block th:unless="${#lists.isEmpty(allPosts)}" th:with="latestPost = ${allPosts[0]}">
+                        <strong id="index-latestPost-title" th:text="${latestPost.spec.title}"></strong>
+                        <div id="index-latestPost-subtitle">
+                            发布于&nbsp;<span th:text="${#dates.format(latestPost.spec.publishTime, 'yyyy年M月dd日')}"></span>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${#lists.isEmpty(allPosts)}">
+                        <strong id="index-latestPost-title">暂时没有文章</strong>
+                        <div id="index-latestPost-subtitle">ta很懒，什么都还没写 :P</div>
+                    </th:block>
+                </div>
+            </article>
+        </section>
+
+        <!-- all post -->
+        <section id="index-allPosts" th:if="${#lists.size(posts.items) gt 1}" th:with="allPosts = ${posts.items}">
+            <div id="index-allPosts-container">
+                <th:block th:each="post : ${allPosts}" th:if="${postStat.index gt 0}">
+                    <article th:id="'index-post-' + ${postStat.index}" th:style="(${not #strings.isEmpty(post.spec.cover)}) ? 'background-image: url(' + @{${post.spec.cover}} + ');'" th:h-custcover="${not #strings.isEmpty(post.spec.cover)}" h-active="false"
+                        th:onmouseover="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').scrollIntoView()'"
+                    >
+                        <a th:href="${post.status.permalink}"
+                            th:onmouseover="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = true;'"
+                            th:onmouseleave="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = false;'"
+                        ></a>
+                        <div id="index-allPosts-titleContainer">
+                            <strong th:text="${post.spec.title}"></strong>
+                            <div>发布于&nbsp;<span th:text="${#dates.format(post.spec.publishTime, 'yyyy年M月dd日')}"></span></div>
+                        </div>
+                    </article>
                 </th:block>
             </div>
         </section>
+
+        <div th:text="${posts.nextUrl}"></div>
     </th:block>
 </html>
