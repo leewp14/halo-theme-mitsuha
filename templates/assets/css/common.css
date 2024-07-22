@@ -35,3 +35,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.section-spacer {
+    padding: 1rem;
+}
