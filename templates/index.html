@@ -16,8 +16,12 @@
         <!-- latest post -->
         <section id="index-latestPost" th:with="latestPosts = ${postFinder.list(1,1)}" h-active="false" >
             <article id="index-post-latest">
-                <a th:unless="${#lists.isEmpty(latestPosts.items)}" th:with="latestPost = ${latestPosts.items[0]}" th:href="${latestPost.status.permalink}"
-                    onmouseover="document.querySelector('#index-latestPost').attributes['h-active'].value = true;" onmouseleave="document.querySelector('#index-latestPost').attributes['h-active'].value = false;"
+                <a 
+                    th:unless="${#lists.isEmpty(latestPosts.items)}"
+                    th:with="latestPost = ${latestPosts.items[0]}"
+                    th:href="${latestPost.status.permalink}"
+                    onmouseover="document.querySelector('#index-latestPost').attributes['h-active'].value = true;"
+                    onmouseleave="document.querySelector('#index-latestPost').attributes['h-active'].value = false;"
                 ></a>
                 <div id="index-latestPost-header">
                     <div id="index-latestPost-header-icon">
@@ -46,10 +50,10 @@
         <section id="index-allPosts" th:if="${#lists.size(posts.items) gt 1}" th:with="allPosts = ${posts.items}">
             <div id="index-allPosts-container">
                 <!-- prev page "article" -->
-                <article th:id="index-post-prevpage" h-active="false"
+                <article th:id="index-post-prevpage" class="nav"
                     th:onmouseover="document.querySelector(\'#index-post-prevpage\').scrollIntoView()"
                     th:if="${#bools.isTrue(posts.hasPrevious)}"
-                    class="nav"
+                    h-active="false"
                 >
                     <a th:href="${posts.prevUrl}"
                         th:onmouseover="'document.querySelector(\'#index-post-prevpage\').attributes[\'h-active\'].value = true;'"
@@ -64,8 +68,10 @@
                 <!-- articles -->
                 <!-- <th:block th:each="post : ${allPosts}" th:unless="${posts.page} eq 1 and ${postStat.index eq 0}"> -->
                 <th:block th:each="post : ${allPosts}">
-                    <article th:id="'index-post-' + ${postStat.index}" th:style="(${not #strings.isEmpty(post.spec.cover)}) ? 'background-image: url(' + @{${post.spec.cover}} + ');'" th:h-custcover="${not #strings.isEmpty(post.spec.cover)}" h-active="false"
-                        th:onmouseover="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').scrollIntoView()'"
+                    <article th:id="'index-post-' + ${postStat.index}"
+                        th:style="(${not #strings.isEmpty(post.spec.cover)}) ? 'background-image: url(' + @{${post.spec.cover}} + ');'"
+                        th:h-custcover="${not #strings.isEmpty(post.spec.cover)}"
+                        h-active="false"
                     >
                         <a th:href="${post.status.permalink}"
                             th:onmouseover="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = true;'"
@@ -79,10 +85,11 @@
                 </th:block>
 
                 <!-- next page "article" -->
-                <article th:id="index-post-nextpage" h-active="false"
+                <article class="nav"
+                    th:id="index-post-nextpage"
                     th:onmouseover="document.querySelector(\'#index-post-nextpage\').scrollIntoView()"
                     th:if="${#bools.isTrue(posts.hasNext)}"
-                    class="nav"
+                    h-active="false"
                 >
                     <a th:href="${posts.nextUrl}"
                         th:onmouseover="'document.querySelector(\'#index-post-nextpage\').attributes[\'h-active\'].value = true;'"

@@ -116,7 +116,7 @@ section#index-latestPost, section#index-allPosts {
         height: calc(100% - 2rem);
         display: flex;
         flex-direction: row;
-        /* flex-wrap: wrap; */
+        flex-wrap: wrap;
         gap: 1rem;
         overflow: auto;
         scroll-behavior: smooth;
