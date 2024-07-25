@@ -44,67 +44,67 @@
             </article>
         </section>
 
-        <div class="section-spacer"></div>
-
         <!-- all post -->
-        <section id="index-allPosts" th:if="${#lists.size(posts.items) gt 1}" th:with="allPosts = ${posts.items}">
-            <div id="index-allPosts-container">
-                <!-- prev page "article" -->
-                <article th:id="index-post-prevpage" class="nav"
-                    th:onmouseover="document.querySelector(\'#index-post-prevpage\').scrollIntoView()"
-                    th:if="${#bools.isTrue(posts.hasPrevious)}"
-                    h-active="false"
-                >
-                    <a th:href="${posts.prevUrl}"
-                        th:onmouseover="'document.querySelector(\'#index-post-prevpage\').attributes[\'h-active\'].value = true;'"
-                        th:onmouseleave="'document.querySelector(\'#index-post-prevpage\').attributes[\'h-active\'].value = false;'"
-                    ></a>
-                    <div class="index-allPosts-titleContainer">
-                        <strong>上一页</strong>
-                        <div>Page&nbsp;<span th:text="${posts.page} - 1"></span></div>
-                    </div>
-                </article>
-
-                <!-- articles -->
-                <!-- <th:block th:each="post : ${allPosts}" th:unless="${posts.page} eq 1 and ${postStat.index eq 0}"> -->
-                <th:block th:each="post : ${allPosts}">
-                    <article th:id="'index-post-' + ${postStat.index}"
-                        th:style="(${not #strings.isEmpty(post.spec.cover)}) ? 'background-image: url(' + @{${post.spec.cover}} + ');'"
-                        th:h-custcover="${not #strings.isEmpty(post.spec.cover)}"
+        <th:block th:if="${#lists.size(posts.items) gt 1}">
+            <div class="section-spacer"></div>
+            <section id="index-allPosts" th:with="allPosts = ${posts.items}">
+                <div id="index-allPosts-container">
+                    <!-- prev page "article" -->
+                    <article th:id="index-post-prevpage" class="nav"
+                        th:onmouseover="document.querySelector(\'#index-post-prevpage\').scrollIntoView()"
+                        th:if="${#bools.isTrue(posts.hasPrevious)}"
                         h-active="false"
                     >
-                        <a th:href="${post.status.permalink}"
-                            th:onmouseover="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = true;'"
-                            th:onmouseleave="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = false;'"
+                        <a th:href="${posts.prevUrl}"
+                            th:onmouseover="'document.querySelector(\'#index-post-prevpage\').attributes[\'h-active\'].value = true;'"
+                            th:onmouseleave="'document.querySelector(\'#index-post-prevpage\').attributes[\'h-active\'].value = false;'"
                         ></a>
                         <div class="index-allPosts-titleContainer">
-                            <strong th:text="${post.spec.title}"></strong>
-                            <div>发布于&nbsp;<span th:text="${#dates.format(post.spec.publishTime, 'yyyy年M月dd日')}"></span></div>
+                            <strong>上一页</strong>
+                            <div>Page&nbsp;<span th:text="${posts.page} - 1"></span></div>
                         </div>
                     </article>
-                </th:block>
 
-                <!-- next page "article" -->
-                <article class="nav"
-                    th:id="index-post-nextpage"
-                    th:onmouseover="document.querySelector(\'#index-post-nextpage\').scrollIntoView()"
-                    th:if="${#bools.isTrue(posts.hasNext)}"
-                    h-active="false"
-                >
-                    <a th:href="${posts.nextUrl}"
-                        th:onmouseover="'document.querySelector(\'#index-post-nextpage\').attributes[\'h-active\'].value = true;'"
-                        th:onmouseleave="'document.querySelector(\'#index-post-nextpage\').attributes[\'h-active\'].value = false;'"
-                    ></a>
-                    <div class="index-allPosts-titleContainer">
-                        <strong>下一页</strong>
-                        <div>You're at page&nbsp;<span th:text="${posts.page}"></span>&nbsp;of&nbsp;<span th:text="${posts.totalPages}"></span></div>
-                    </div>
-                </article>
-            </div>
-        </section>
+                    <!-- articles -->
+                    <!-- <th:block th:each="post : ${allPosts}" th:unless="${posts.page} eq 1 and ${postStat.index eq 0}"> -->
+                    <th:block th:each="post : ${allPosts}">
+                        <article th:id="'index-post-' + ${postStat.index}"
+                            th:style="(${not #strings.isEmpty(post.spec.cover)}) ? 'background-image: url(' + @{${post.spec.cover}} + ');'"
+                            th:h-custcover="${not #strings.isEmpty(post.spec.cover)}"
+                            h-active="false"
+                        >
+                            <a th:href="${post.status.permalink}"
+                                th:onmouseover="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = true;'"
+                                th:onmouseleave="'document.querySelector(\'#index-post-' + ${postStat.index} + '\').attributes[\'h-active\'].value = false;'"
+                            ></a>
+                            <div class="index-allPosts-titleContainer">
+                                <strong th:text="${post.spec.title}"></strong>
+                                <div>发布于&nbsp;<span th:text="${#dates.format(post.spec.publishTime, 'yyyy年M月dd日')}"></span></div>
+                            </div>
+                        </article>
+                    </th:block>
+
+                    <!-- next page "article" -->
+                    <article class="nav"
+                        th:id="index-post-nextpage"
+                        th:onmouseover="document.querySelector(\'#index-post-nextpage\').scrollIntoView()"
+                        th:if="${#bools.isTrue(posts.hasNext)}"
+                        h-active="false"
+                    >
+                        <a th:href="${posts.nextUrl}"
+                            th:onmouseover="'document.querySelector(\'#index-post-nextpage\').attributes[\'h-active\'].value = true;'"
+                            th:onmouseleave="'document.querySelector(\'#index-post-nextpage\').attributes[\'h-active\'].value = false;'"
+                        ></a>
+                        <div class="index-allPosts-titleContainer">
+                            <strong>下一页</strong>
+                            <div>You're at page&nbsp;<span th:text="${posts.page}"></span>&nbsp;of&nbsp;<span th:text="${posts.totalPages}"></span></div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <div class="section-spacer"></div>
+        </th:block>
 
         <div class="section-spacer"></div>
-
-        <div th:text="${posts.page}"></div>
     </th:block>
 </html>
