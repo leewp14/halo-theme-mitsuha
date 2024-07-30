@@ -28,7 +28,9 @@
     <!-- end header -->
 
     <!-- cover -->
-    <section id="cover" th:fragment="cover">
+    <section id="cover" th:fragment="cover"
+        th:h-type="${type} ?: 'default'"
+    >
         <div id="cover-desc">
             <div>
             <p>
