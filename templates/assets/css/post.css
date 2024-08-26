@@ -1,0 +1,9 @@
+
+main {
+    max-width: 1024px;
+    margin: auto;
+}
+
+main > article {
+    padding: 2rem;
+}

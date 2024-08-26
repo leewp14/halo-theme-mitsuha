@@ -4,17 +4,29 @@
   th:replace="~{fragments/layout :: html(head = ~{::head},content = ~{::content})}"
 >
     <th:block th:fragment="head">
-        <link rel="stylesheet" th:href="@{/assets/css/index.css}" />
+        <link rel="stylesheet" th:href="@{/assets/css/post.css}" />
     </th:block>
 
     <th:block th:fragment="content">
         <!-- cover -->
-        <th:block th:replace="~{fragments/components :: cover(type='center')}" />
+        <th:block th:replace="~{fragments/components :: cover(type='center', title=${post.spec.title}, desc=null)}" />
 
         <div class="section-spacer"></div>
 
-        <h1 th:text="${post.spec.title}"></h1>
-        <article th:utext="${post.content.content}"></article>
+        <main>
+          <!-- <h1 th:text="${post.spec.title}"></h1> -->
+          <article th:utext="${post.content.content}"></article>
+        </main>
+
+        <div class="section-spacer"></div>
+
+        <div th:if="${haloCommentEnabled}">
+            <halo:comment
+                group="content.halo.run"
+                kind="Post"
+                th:attr="name=${post.metadata.name}"
+            />
+        </div>
 
         <div class="section-spacer"></div>
     </th:block>
